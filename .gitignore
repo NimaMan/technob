@@ -1,3 +1,4 @@
-library/
-processed/
-separated/
+/.eggs
+*.egg-info
+*.pyc
+*.pyo

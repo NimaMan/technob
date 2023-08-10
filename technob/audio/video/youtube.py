@@ -4,7 +4,7 @@ import youtube_dl
 import ffmpeg
 
 
-class YouTubeDownloader:
+class Downloader:
     def __init__(self, output_path):
         self.output_path = output_path
 
