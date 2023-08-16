@@ -1,10 +1,6 @@
 import numpy as np
 import librosa
-import soundfile as sf
-import subprocess
-import pyrubberband as pyrb
 import sys
-from math import log2
 
 from ...math_utils.misc import root_mean_square
 

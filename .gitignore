@@ -1,4 +1,22 @@
+
+# Byte-compiled / optimized / DLL files
+
 /.eggs
 *.egg-info
 *.pyc
+*.py[cod]
 *.pyo
+
+# cpython 
+__pycache__/
+
+
+# C extensions
+*.so
+
+
+# PyInstaller
+.DS_Store
+build/
+dist/
+*.spec

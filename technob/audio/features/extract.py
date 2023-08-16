@@ -127,11 +127,11 @@ class LibrosaFeaturesExtractor:
         M_sync = librosa.util.sync(M, beats)
 
         return M_sync
-
         
 
 class Extractor:
-    # TODO: Complete the class 
+    # TODO: Tailor this class to extract features from audio files. 
+    # Determine which features to extract and how to extract them. 
     """
     Class Uage: This class will be used for extracting features
     """
@@ -216,7 +216,7 @@ class Extractor:
             "segments_boundaries": segments_boundaries,
             "segments_labels": segments_labels,
             "frequency_frames": frequency_frames,
-            "frequency": avg_frequency,
+            #"frequency": avg_frequency,
         }
 
         return features    

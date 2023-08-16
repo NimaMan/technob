@@ -5,10 +5,7 @@ Technob is an open-source Python audio processing module designed to assist musi
 # Current Features
 
 ## Segmentation: 
-Break down long audio recordings into smaller segments to analyze and process specific sections independently. This allows you to focus on individual elements of the music for better control and manipulation. Crreuntly, we support the following segmentation methods: 
-- Fixed-length segments
-- Silence detection
-- Beat detection
+Break down long audio recordings into smaller segments to analyze and process specific sections independently. This allows you to focus on individual elements of the music for better control and manipulation.
 
 ## Pitch Tracking: 
 Pitch tracking is the process of determining the pitch of an audio signal at different points in time. The putch is defined as the frequency of the sound wave, which is perceived as the musical note. For example, a pitch of 440 Hz corresponds to the note A4. Pitch tracking is useful for identifying the notes played in the audio and understanding the melody and harmonies. Melody is the sequence of notes played in a song, while harmony is the combination of multiple notes played simultaneously. This information helps you make informed decisions when creating new layers of sound.
@@ -85,7 +82,7 @@ The current version of Technob supports source separation using classical algori
     Beat Tracking is being performed using the librosa library at the moment. The support for ``madmom`` will be added soon. In addition, we are working on adding state of the art beat tracking algorithms, such as the beat tracking algorithm based on the dynamic bayesian network (DBN).
 
 - [x] Pitch Tracking
-    Pitch Tracking is being performed using the librosa library at the moment. Check this link for some discussion on (pitch detection)[https://brentspell.com/2022/pytorch-yin/]. 
+    Pitch Tracking is being performed using the librosa library at the moment. Check this link for some discussion on [pitch detection](https://brentspell.com/2022/pytorch-yin/). 
 
 - [x] Segmentation
     Currently Segmentation is being performed using sf_segmenter. 
@@ -95,11 +92,9 @@ The current version of Technob supports source separation using classical algori
 
     Some of the work that will be inevstigated are: 
     - MERT model: the pre-print, pre-trained models, and training code can be found here:
-        (Pre-print)[https://arxiv.org/abs/2306.00107 ]
-        https://huggingface.co/m-a-p/MERT-v1-330M
-        https://github.com/yizhilll/MERT
-        https://huggingface.co/spaces/m-a-p/Music-Descriptor
-        https://huggingface.co/spaces/m-a-p/MERT-Music-Genre-Tagging-Prediction
+        - [Pre-print](https://arxiv.org/abs/2306.00107)
+        - [Pre-trained models](https://huggingface.co/m-a-p/MERT-v1-330M)
+        - [Github repo](https://github.com/yizhilll/MERT)
     
 -[x] Music Gen and Audio Craft 
     We will add the latest models open sourced by Meta, in July 2023. 

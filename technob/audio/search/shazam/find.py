@@ -101,7 +101,7 @@ class Shazam:
 
 
 if __name__ == '__main__':
-    audio_file = '../technob/docs/examples/cse.WAV'
+    audio_file = '/Users/nimamanaf/Library/CloudStorage/GoogleDrive-ndizbin14@ku.edu.tr/My Drive/Techno/technob/technob/audio/search/shazam/cse.WAV'
     songs = Shazam(audio_file,).get_songs()
     print(songs.keys())
     
