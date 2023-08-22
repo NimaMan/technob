@@ -103,15 +103,13 @@ class Downloader:
 
 if __name__ == "__main__":
 
-    downloader = Downloader(output_path="/Users/nimamanaf/Desktop/Music/Kobosil")
-    amber_roos = "https://www.youtube.com/watch?v=GzkugkDQPoM"
-    indira_paganotto = "https://www.youtube.com/watch?v=BapBHKMYk0E&t=397s"
-    amelie_lens = ["https://www.youtube.com/watch?v=_Dy_Cn0HEZU", 
-                   "https://www.youtube.com/watch?v=vuBhxwCCbyw"
-                   ]
+    output_path = "/Users/nimamanaf/Desktop/Music/"
+    set_name = "Reiner Zonneveld - Time Warp 2023"
+    output_path = os.path.join(output_path, set_name)
+    downloader = Downloader(output_path=output_path) 
+    from technob.video.set_lists import kobosil_time_warp, reinier_time_warp
+    #for song_name in reinier_time_warp:
+    #    downloader.find_and_download_youtube_link(song_name)
     
-    sagopa = "https://www.youtube.com/watch?v=4-Cq7r2Mw1g"
-    #downloader.download_youtube_link(sagopa)
-    from technob.video.set_lists import kobosil_time_warp
-    for song_name in kobosil_time_warp:
-        downloader.find_and_download_youtube_link(song_name)
+    reinier_time_warp_full = "https://www.youtube.com/watch?v=oVfw8P0NOTA&t=2804s"
+    downloader.download_youtube_link(reinier_time_warp_full)
