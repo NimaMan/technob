@@ -102,14 +102,16 @@ class Downloader:
 
 
 if __name__ == "__main__":
-
-    output_path = "/Users/nimamanaf/Desktop/Music/"
-    set_name = "Reiner Zonneveld - Time Warp 2023"
+    from technob.video.set_lists import Tracklist, kobosil, reinier, tale_of_us, charlotte_de_witte, amelie_lens
+    
+    output_path = "/Users/nimamanaf/Desktop/Music/" 
+    set_name = "Amelia Lens - Tomorrowland 2023"
     output_path = os.path.join(output_path, set_name)
     downloader = Downloader(output_path=output_path) 
-    from technob.video.set_lists import kobosil_time_warp, reinier_time_warp
-    #for song_name in reinier_time_warp:
-    #    downloader.find_and_download_youtube_link(song_name)
     
-    reinier_time_warp_full = "https://www.youtube.com/watch?v=oVfw8P0NOTA&t=2804s"
-    downloader.download_youtube_link(reinier_time_warp_full)
+    # download the songs from the tracklist of the set 
+    amelie_lens_tracklist = Tracklist(amelie_lens["Tomorrowland Summer 2023"])
+    downloader.download_youtube_link(amelie_lens_tracklist.youtube_link)
+    for song in amelie_lens_tracklist.songs:
+        search_name = song.search_name
+        downloader.find_and_download_youtube_link(search_name)
