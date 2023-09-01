@@ -2,7 +2,7 @@ import numpy as np
 import librosa
 import sys
 
-from ...math_utils.misc import root_mean_square
+from ...math.utils import root_mean_square
 
 
 class ProcessorUtils:

@@ -85,7 +85,8 @@ The current version of Technob supports source separation using classical algori
     Pitch Tracking is being performed using the librosa library at the moment. Check this link for some discussion on [pitch detection](https://brentspell.com/2022/pytorch-yin/). 
 
 - [x] Segmentation
-    Currently Segmentation is being performed using sf_segmenter. 
+    Segmentation is a work in progress. We are looking into adding Deep audio segmenter similar to:
+        - [Deep Audio Segmenter](https://github.com/janclemenslab/das)
 
 - [x] Feature Extraction
     Feature Extraction is a work in progress. The current objective of the feature selection is to extract features that are relevant to finding similar songs. This part will be supported in version 0.2.0.
