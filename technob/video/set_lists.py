@@ -59,7 +59,8 @@ class Tracklist:
         
 
 kobosil = {
-    "Time Warp 2023":{ "youtube_link": "https://www.youtube.com/watch?v=Z3Z4X6Z3Z4Y",
+    "Time Warp 2023":
+    { "youtube_link": "https://www.youtube.com/watch?v=Z3Z4X6Z3Z4Y",
     "info": '''
     0:00:45 No Neim Lost In The Dark
     0:02:14 Svetec, Sikztah - Phoenix (Original Mix)
@@ -81,9 +82,16 @@ kobosil = {
     1:42:06 Luckes - Manera (Original Mix)
     1:46:00 O.B.I - Wir sind die nacht (unreleased)
     1:52:42 In Verruf - (Unreleased)
-    '''},
+    ''',
+    "other_links":{"https://www.youtube.com/watch?v=EYb_zhgd70U": "svetec - indifference ",
+                    "https://www.youtube.com/watch?v=0sDNJ-UzwSE": "Petersardi - smile on the face", 
+                    "https://www.youtube.com/watch?v=u4CAW92_4AU": "Vizionn - Control (Original Mix)", 
+                    "https://www.youtube.com/watch?v=42yhUyqsFdE": "Farrago - Hardship",
+                },
 
+        }
     }
+
 
 reinier = {
     "Time Warp 2023": {

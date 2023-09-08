@@ -41,7 +41,7 @@ class Extractor:
         """Main function to extract audio features."""
         try:
             self._log("1/8 Segment the audio")
-            #segments_boundaries, segments_labels = self.features.get_segments(self.audio_data, self.sample_rate)
+            segments_boundaries, segments_labels = self.features.get_segments(self.audio_data, self.sample_rate)
             
             self._log("2/8 Extract pitch over time")
             frequency_frames = self.features.get_pitch(self.audio_data, self.sample_rate)
@@ -57,7 +57,7 @@ class Extractor:
             self._log("5.1/8 Extract features beat-synchronously")
             CQT_sync = self.features.get_intensity(self.audio_data, self.sample_rate, beats)
             M_sync = self.features.get_timbre(self.audio_data, self.sample_rate, beats)
-            C_sync = self.features.get_pitch_librosa(y_harmonic, self.sample_rate, beats)
+            C_sync = self.features.get_pitch(y_harmonic, self.sample_rate, beats)
 
             self._log('5.2 Aggregate features')
             intensity_frames = np.matrix(CQT_sync).getT()

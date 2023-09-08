@@ -20,7 +20,7 @@ class Shazam:
             format_ = audio.split('.')[-1]
             audio = AudioSegment.from_file(audio, format=format_)   
         elif isinstance(audio, np.ndarray):
-            audio = AudioSegment(audio.tobytes(), frame_rate=audio.sample_rate, sample_width=audio.sample_width, channels=audio.channels)
+            audio = AudioSegment(audio.tobytes(), )
         elif isinstance(audio, bytes):
             audio = AudioSegment.from_file(BytesIO(audio))
         elif isinstance(audio, AudioSegment):

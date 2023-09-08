@@ -104,14 +104,17 @@ class Downloader:
 if __name__ == "__main__":
     from technob.video.set_lists import Tracklist, kobosil, reinier, tale_of_us, charlotte_de_witte, amelie_lens
     
-    output_path = "/Users/nimamanaf/Desktop/Music/" 
-    set_name = "Amelia Lens - Tomorrowland 2023"
+    output_path = "/Users/nimamanaf/Desktop/Music/Kobosil" 
+    set_name = ""
     output_path = os.path.join(output_path, set_name)
     downloader = Downloader(output_path=output_path) 
+    downloader.download_youtube_link("https://www.youtube.com/watch?v=EYb_zhgd70U")
     
+    '''
     # download the songs from the tracklist of the set 
-    amelie_lens_tracklist = Tracklist(amelie_lens["Tomorrowland Summer 2023"])
-    downloader.download_youtube_link(amelie_lens_tracklist.youtube_link)
-    for song in amelie_lens_tracklist.songs:
+    tracklist = Tracklist(charlotte_de_witte["Ultra 2023"])
+    downloader.download_youtube_link(tracklist.youtube_link)
+    for song in tracklist.songs:
         search_name = song.search_name
         downloader.find_and_download_youtube_link(search_name)
+    '''

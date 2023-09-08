@@ -158,28 +158,17 @@ down the major computational steps and provide recommendations for improving eff
 
 Overall Recommendations:
 ------------------------
-- **Vectorization**: Many operations, especially matrix computations, can benefit from vectorization. Ensure that 
-  operations are vectorized using `numpy` or similar libraries to leverage fast C/Fortran backends.
-  
-- **Parallelization**: For systems with multiple cores, parallelizing certain steps, especially the recurrence matrix 
-  calculation, can offer significant speed-ups.
-  
-- **Use JIT Compilation**: Tools like `numba` can significantly speed up loops and mathematical computations by using 
-  Just-In-Time (JIT) compilation.
-  
-- **Optimized Libraries**: Libraries like `scipy` and `numpy` are highly optimized and should be used wherever possible.
+The current feature extraction method is much costlier in comparison to the other steps.
+Using some other features may result in the other parts of the algorithm becoming the bottleneck.
+This is left as a future improvement.
 
-- **Algorithmic Improvements**: Consider researching advanced algorithms or approximations that might speed up 
-  computationally intensive steps.
+Source paper: 
+J. Serrà, M. Müller, P. Grosche and J. L. Arcos, "Unsupervised Music Structure Annotation by Time Series Structure Features and Segment Similarity," in IEEE Transactions on Multimedia, vol. 16, no. 5, pp. 1229-1240, Aug. 2014, doi: 10.1109/TMM.2014.2310701.
 
-By incorporating the above recommendations, it's possible to achieve a balance between computational time and 
-segmentation accuracy, making the tool more suitable for real-time applications or processing large datasets.
-
-'''
-"""
-Some of the code in this file is based on the code from the following repository:
+Similar implementations:
 https://github.com/wayne391/sf_segmenter
-"""
+'''
+
 
 import numpy as np
 import librosa
@@ -317,131 +306,153 @@ def run_label(boundaries, R, max_iter=100, return_feat=False):
         return labs
 
 
-class Segmenter(object):
-    def __init__(self, peak_finder_threshold=100, offset_denom=0.1, guassian_kernel_size=100, embedded_dimensions=30, k_nearest=0.04, bound_norm_feats=np.inf):
+class AudioSegmenter(object):
+    def __init__(self, adaptive_threshold_size=100, offset_coefficient=0.1, gaussian_filter_size=100, embedding_dimension=30, nearest_neighbors_fraction=0.04, feature_normalization=np.inf):
         """
-        Initialize the Segmenter with configuration settings. We seem to be sensitive to the hyperparameters, especially the guassian_kernel_size, peak_finder_threshold, and offset_denom, and embedded_dimensions.
-        
+        Initialize the AudioSegmenter with configuration settings.
         Args:
-            peak_finder_threshold (int, optional): Size of the adaptive threshold for peak picking. Defaults to 100.
-            offset_denom (float, optional): Offset coefficient for adaptive thresholding. Defaults to 0.1.
-            guassian_kernel_size (int, optional): Size of gaussian kernel in beats. Defaults to 100.
-            embedded_dimensions (int, optional): Number of embedded dimensions. Defaults to 30.
-            k_nearest (float, optional): k*N-nearest neighbors for the recurrence plot. Defaults to 0.04.
-            bound_norm_feats (str, optional): Normalization type for features. Defaults to np.inf.
-
+            adaptive_threshold_size (int, optional): Size of the adaptive threshold for peak picking. Defaults to 100.
+            offset_coefficient (float, optional): Offset coefficient for adaptive thresholding. Defaults to 0.1.
+            gaussian_filter_size (int, optional): Size of gaussian filter in beats. Defaults to 100.
+            embedding_dimension (int, optional): Number of embedding dimensions. Defaults to 30.
+            nearest_neighbors_fraction (float, optional): Fraction of nearest neighbors for the recurrence plot. Defaults to 0.04.
+            feature_normalization (str, optional): Normalization type for features. Defaults to np.inf.
         Returns:
-            Segmenter: Initialized Segmenter object.
+            AudioSegmenter: Initialized AudioSegmenter object.
         """
-        # set params 
-        self.peak_finder_threshold = peak_finder_threshold  # Size of the adaptive threshold for peak picking
-        self.offset_denom = offset_denom  # Offset coefficient for adaptive thresholding
-        self.guassian_kernel_size = guassian_kernel_size  # Size of gaussian kernel in beats
-        self.embedded_dimensions = embedded_dimensions  # Number of embedded dimensions
-        self.k_nearest = k_nearest  # k*N-nearest neighbors for the recurrence plot
-        self.bound_norm_feats = bound_norm_feats  # Normalization type for features
+        # Set hyperparameters
+        self.adaptive_threshold_size = adaptive_threshold_size
+        self.offset_coefficient = offset_coefficient
+        self.gaussian_filter_size = gaussian_filter_size
+        self.embedding_dimension = embedding_dimension
+        self.nearest_neighbors_fraction = nearest_neighbors_fraction
+        self.feature_normalization = feature_normalization
        
-        self.refresh()
+        self.reset_internal_states()
 
-    def refresh(self):
-        """Reset all stored features and results."""
-        # - segmentation
-        self.F = None
-        self.E = None
-        self.R = None
-        self.L = None
-        self.SF = None
-        self.nc = None
+    def reset_internal_states(self):
+        """Clear all stored features and results."""
+        self.features = None
+        self.embedded_features = None
+        self.recurrence_matrix = None
+        self.time_lag_matrix = None
+        self.structural_features = None
+        self.novelty_curve = None
 
-        # - labeling
-        self.S = None
-        self.S_trans = None
-        self.S_final = None
+        # Labeling
+        self.segment_matrix = None
+        self.transformed_segment_matrix = None
+        self.final_segment_matrix = None
 
-        # - results
-        self.boundaries = None
-        self.labs = None
-        
-    def process(self, F, return_labels=False):
-        """
-        Main segmentation process using provided features.
-        
-        Args:
-            F (np.ndarray): Features for segmentation.
-            return_labels (bool, optional): Whether to return segment labels. Defaults to False.
+        # Results
+        self.segment_boundaries = None
+        self.segment_labels = None
+    
+    def embed_feature_space(self, F):
+        m = self.embedding_dimension
+        E = embedded_space(F, m)
+        return E
+
+    def compute_recurrence_matrix(self, E):
+        # Compute the recurrence matrix
+        k = self.nearest_neighbors_fraction
+        #R = librosa.segment.recurrence_matrix(E.T, k=k * int(F.shape[0]), width=1, metric="euclidean", sym=True).astype(np.float32)
+        # This is a faster implementation of the recurrence matrix
+        R = compute_recurrence_matrix(E, k=k)
+        return R
             
+    def compute_time_lag_representation(self, R):
+        # Obtain a time-lag representation
+        L = shift_matrix_circularly(R)
+        return L
+        
+    def filter_structural_features(self, L):
+        # Filter the lag matrix to get structural features
+        M = self.gaussian_filter_size
+        SF = gaussian_filter(L.T, M=M, axis=1)
+        SF = gaussian_filter(SF, M=1, axis=0)
+        return SF
+    
+    def compute_novelty_from_features(self, SF):
+        # Compute the novelty curve from structural features
+        nc = compute_novelty_curve(SF)
+        return nc
+        
+    def detect_segment_boundaries(self, nc):
+        # Detect boundaries from the novelty curve
+        Mp = self.adaptive_threshold_size
+        od = self.offset_coefficient
+        est_bounds = find_peaks_adaptive_threshold(nc, L=Mp, offset_denom=od)
+        return est_bounds 
+        
+    def adjust_boundaries(self, est_bounds):
+        """
+        Adjusts the detected segment boundaries to align with the original time series context.
+
+        When embedding the feature space to higher dimensions, the effective size of the time series 
+        is reduced by the embedding dimensions. As a result, the boundaries detected in this embedded 
+        space are offset from the original time series context. This method corrects the boundary 
+        indices to ensure they align correctly with the original time series.
+
+        Parameters:
+        - est_bounds (list): List of detected segment boundaries in the embedded feature space.
+
         Returns:
-            tuple: Segment boundaries and labels.
+        - list: Adjusted segment boundaries that align with the original time series context.
+
+        Example:
+        --------
+        If the embedding dimension is 2, then a boundary detected at index 5 in the embedded space 
+        would be adjusted to index 6 in the original time series context.
         """
-        self.refresh()
+        m = self.embedding_dimension
+        est_bounds = np.asarray(est_bounds) + int(np.ceil(m / 2.))
+        # Include the start and end as boundaries
+        est_idxs = np.concatenate(([0], est_bounds, [self.feature_shape[0] - 1]))
+        est_idxs = np.unique(est_idxs)
 
-        # Parameters for structural features
-        Mp = self.peak_finder_threshold
-        od = self.offset_denom
-        M = self.guassian_kernel_size
-        m = self.embedded_dimensions
-        k = self.k_nearest
-        norm_type = self.bound_norm_feats
+        assert est_idxs[0] == 0 and est_idxs[-1] == self.feature_shape[0] - 1
+        
+        return est_bounds
+    
+    def label_segments(self, R, est_bounds):
+        """
+        Label segments based on the recurrence matrix and detected boundaries.
 
+        Parameters:
+        - R (np.ndarray): Recurrence matrix.
+        - est_bounds (list): List of detected segment boundaries.
+
+        Returns:
+        - list: List of segment labels.
+        """
+        labs, = run_label(est_bounds, R)
+        return labs
+
+    def segment_features(self, F, include_labels=False):
+        self.reset_internal_states()
+        
         # Normalize the features
-        F = normalize(F, norm_type=norm_type)
-
-        # Check if the track is not too short
+        F = normalize(F, norm_type=self.feature_normalization)
+        
         if F.shape[0] > 20:
-            # Embed the feature space (shingle)
-            E = embedded_space(F, m)
-            
-            # Compute the recurrence matrix
-            #R = librosa.segment.recurrence_matrix(E.T, k=k * int(F.shape[0]), width=1, metric="euclidean", sym=True).astype(np.float32)
-            # This is a faster implementation of the recurrence matrix
-            R = compute_recurrence_matrix(E, k=k)
-            # Obtain a time-lag representation
-            L = shift_matrix_circularly(R)
-
-            # Filter the lag matrix to get structural features
-            SF = gaussian_filter(L.T, M=M, axis=1)
-            SF = gaussian_filter(SF, M=1, axis=0)
-
-            # Compute the novelty curve from structural features
-            nc = compute_novelty_curve(SF)
-
-            # Detect boundaries from the novelty curve
-            est_bounds = find_peaks_adaptive_threshold(nc, L=Mp, offset_denom=od)
-
-            # Adjust the boundaries for the embedded space
-            est_bounds = np.asarray(est_bounds) + int(np.ceil(m / 2.))
+            self.E = self.embed_feature_space(F)
+            self.R = self.compute_recurrence_matrix(self.E)
+            self.L = self.compute_time_lag_representation(self.R)
+            self.SF = self.filter_structural_features(self.L)
+            self.nc = self.compute_novelty_from_features(self.SF)
+            est_bounds = self.detect_segment_boundaries(self.nc)
+            est_bounds = self.adjust_boundaries(est_bounds)
         else:
             est_bounds = []
 
-        # Include the start and end as boundaries
-        est_idxs = np.concatenate(([0], est_bounds, [F.shape[0] - 1]))
-        est_idxs = np.unique(est_idxs)
+        self.boundaries = est_bounds
+        if include_labels:
+            self.labs = self.label_segments(self.R, est_bounds)
+            return est_bounds, self.labs
+        return est_bounds, None
 
-        assert est_idxs[0] == 0 and est_idxs[-1] == F.shape[0] - 1
-        
-        # Store the features for later use
-        self.F = F
-        self.E = E
-        self.R = R
-        self.L = L
-        self.SF = SF
-        self.nc = nc
-
-        # If labels are requested, compute and return them
-        if return_labels:
-            labs, (S, S_trans, S_final) = run_label(est_idxs, R, return_feat=True)
-            self.S = S
-            self.S_trans = S_trans
-            self.S_final = S_final
-            
-            self.boundaries = est_idxs
-            self.labs = labs
-            return est_idxs, labs
-        else:
-            self.boundaries = est_idxs
-            return est_idxs, None
-
-    def convert_frame_boundaries_to_time(self, boundaries, sr=22050, hop_length=512):
+    def convert_boundaries_to_time_format(self, boundaries, sr=22050, hop_length=512):
         """
         Convert frame boundaries to time (seconds).
         
@@ -457,13 +468,13 @@ class Segmenter(object):
         
         return boundaries
     
-    def process_midi(self, path_midi, return_labels=True, time_boundaries=False, hop_length=int(4096 * 0.75)):
+    def segment_midi_file(self, path_midi, include_labels=True, time_boundaries=False, hop_length=int(4096 * 0.75)):
         """
         Process MIDI file for segmentation.
         
         Args:
             path_midi (str): Path to the MIDI file.
-            return_labels (bool, optional): Whether to return segment labels. Defaults to True.
+            include_labels (bool, optional): Whether to return segment labels. Defaults to True.
             time_boundaries (bool, optional): Whether to return boundaries in time (seconds). Defaults to False.
             
         Returns:
@@ -478,31 +489,29 @@ class Segmenter(object):
         pianoroll_sync = midi_extract_beat_sync_pianoroll(pianoroll, midi_obj.ticks_per_beat)  
 
         # Process the beat synchronized piano roll
-        boundaries, labels = self.process(pianoroll_sync, return_labels=return_labels)
+        boundaries, labels = self.segment_features(pianoroll_sync, include_labels=include_labels)
         if time_boundaries:
-            boundaries = self.convert_frame_boundaries_to_time(boundaries, sr=midi_obj.sr, hop_length=hop_length)
+            boundaries = self.convert_boundaries_to_time_format(boundaries, sr=midi_obj.sr, hop_length=hop_length)
 
         return boundaries, labels
 
-    def process_audio(self, audio_data, sr=22050, return_labels=True, time_boundaries=False, hop_length=int(4096 * 0.75)):
+    def segment_from_audio_data(self, audio_data, sr=22050, include_labels=True, convert_to_time=True, hop_length=int(4096 * 0.75)):
         """
-        Process audio file for segmentation.
-        
+        Segment an audio waveform.
         Args:
-            path_audio (str): Path to the audio file.
-            sr (int, optional): Sampling rate for audio loading. Defaults to 22050.
-            return_labels (bool, optional): Whether to return segment labels. Defaults to True.
-            time_boundaries (bool, optional): Whether to return boundaries in time (seconds). Defaults to False.
-            
+            audio_data (np.array): Audio waveform.
+            sr (int, optional): Sample rate. Defaults to 22050.
+            include_labels (bool, optional): If True, segment labels are returned. Defaults to True.
+            convert_to_time (bool, optional): If True, segment boundaries are converted to time (seconds). Defaults to False.
+            hop_length (int, optional): Hop length for feature extraction. Defaults to int(4096 * 0.75).
         Returns:
-            tuple: Segment boundaries and labels.
+            tuple: Segment boundaries and optionally labels.
         """
-        pcp = audio_extract_pcp(audio_data, sr, hop_len=hop_length)
-
-        boundaries, labels = self.process(pcp, return_labels=return_labels)
-        if time_boundaries:
-            boundaries = self.convert_frame_boundaries_to_time(boundaries, sr=sr, hop_length=hop_length)
-        
+        pcp_features = audio_extract_pcp(audio_data, sr, hop_len=hop_length)
+        self.feature_shape = pcp_features.shape
+        boundaries, labels = self.segment_features(pcp_features, include_labels=include_labels)
+        if convert_to_time:
+            boundaries = self.convert_boundaries_to_time_format(boundaries, sr=sr, hop_length=hop_length)
         return boundaries, labels
 
 
@@ -517,8 +526,8 @@ if __name__ == "__main__":
     import time
     start = time.time()
     # Initialize the segmenter 
-    segmenter = Segmenter(peak_finder_threshold=100, offset_denom=.1, guassian_kernel_size=100, embedded_dimensions=30, k_nearest=0.04, bound_norm_feats=np.inf)
-    boundaries, labels = segmenter.process_audio(audio_data, sr=sr, return_labels=False, time_boundaries=True)
+    segmenter = AudioSegmenter(adaptive_threshold_size=100, offset_coefficient=0.1, gaussian_filter_size=100, embedding_dimension=30, nearest_neighbors_fraction=0.04, feature_normalization=np.inf)
+    boundaries, labels = segmenter.segment_from_audio_data(audio_data, sr=sr, include_labels=False, convert_to_time=True)
     end = time.time()
     # transform boundaries in seconds to mm:ss format
     import datetime

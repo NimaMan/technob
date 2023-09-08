@@ -1,10 +1,17 @@
-from technob.video import Downloader
+import torch
 
 
 if __name__ == "__main__":
 
-    downloader = Downloader(output_path="/Users/nimamanaf/Desktop/Music/")
-    anber_roos = "https://www.youtube.com/watch?v=GzkugkDQPoM"
-    from_kobosil_set = "https://www.youtube.com/watch?v=gkXB5lui4mg"
-    indira_paganotto = "https://www.youtube.com/watch?v=BapBHKMYk0E&t=397s"
-    downloader.download_youtube_link(indira_paganotto)
+    model = torch.hub.load('harritaylor/torchvggish', 'vggish')
+    model.eval()
+    
+    # load an audio file 
+    import librosa
+    audio_path = "technob/docs/examples/cse.WAV"
+    y, sr = librosa.load(audio_path)
+
+    # extract audio features
+    import numpy as np
+    features = model.forward(y, sr)
+    print(features.shape)
