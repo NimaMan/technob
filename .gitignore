@@ -21,5 +21,6 @@ build/
 dist/
 *.spec
 
-# DS_Store
-.DS_Store
+# DS_Store in all directories and subdirectories
+**/.DS_Store
+
