@@ -75,9 +75,9 @@ class Downloader:
         output_file_path = os.path.join(self.output_path, audio_file_name)
 
         ffmpeg.input(video_path).output(output_file_path).run()
-        if keep_video:
-            return output_file_path
-        os.remove(video_path)
+        if not keep_video:
+            os.remove(video_path)
+        return output_file_path
 
     def download_urls(self, urls, output_format="wav"):
         """
@@ -104,11 +104,11 @@ class Downloader:
 if __name__ == "__main__":
     from technob.video.set_lists import Tracklist, kobosil, reinier, tale_of_us, charlotte_de_witte, amelie_lens
     
-    output_path = "/Users/nimamanaf/Desktop/Music/Kobosil" 
+    output_path = "/Users/nimamanaf/Desktop/Music/misc" 
     set_name = ""
     output_path = os.path.join(output_path, set_name)
     downloader = Downloader(output_path=output_path) 
-    downloader.download_youtube_link("https://www.youtube.com/watch?v=EYb_zhgd70U")
+    downloader.download_youtube_link("https://www.youtube.com/watch?v=S-WXtRslJZw")
     
     '''
     # download the songs from the tracklist of the set 
