@@ -245,6 +245,36 @@ reiner_urls = ["https://www.youtube.com/watch?v=ovUWIjDBRTc",
                "https://www.youtube.com/watch?v=bWKUhgpVG1o",
                ]
 
+trym = {
+    "Extrema 2022": {
+        "youtube_link": "https://www.youtube.com/watch?v=ubVmJQG34BY",
+        "info": '''
+            0:00 Billy Gillies - Density
+            2:50 Bitonal & MonoDynamic - Notaufnahme 2022 - N.O.B.A Remix
+            5:16 Daniel Beknackt - Detection (N.O.B.A Remix)
+            6:20 H! Dude - Olivette
+            7:40 H! Dude - move your feet
+            11:30 Aran Burn - Loco
+            13:50 Dax J - Offending public morality
+            15:40 Disguised - Frontal
+            19:25 OGTS - Conjure Image
+            24:16 Detatched From Reality - elMefti
+            27:59 Tolouse - ANSBRO
+            28:30 Scove - Kaltes Fieber
+            32:43 Paul Denton - Stomp
+            35:04 Scot Project - B3 (Believe In You)
+            39:10 Mark Sherry-Total Eclipse (David Forbes Remix)
+            41:05 David Forbes - Isolate (Extended Mix)
+            43:30 La Bouche - Be My Lover (euro dance mix)
+            44:30 Bollmann - Rampage
+            49:45 MO-DO - Eins Zwei Polizei (remix ID?)
+            51:42 NG Rezonance & Coulson (UK) - Resilience (Original Mix)
+            57:40 Scot Project - H (Hypnotize)
+            1:00:00 U96 - Club Bizarre 2k17 (UltraBooster Bootleg Remix)
+            1:02:15 Around the World (MZPERX edit)
+            ''',
+        },
+}
              
 ceza_urls = ["https://www.youtube.com/watch?v=rP2X839Bm9U", 
 ]
