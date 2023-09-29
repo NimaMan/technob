@@ -1,0 +1,7 @@
+{
+    "name": "My Technob Dev Container",
+    "build": {
+        "context": "..",
+        "dockerfile": "../Dockerfile"
+    }
+}

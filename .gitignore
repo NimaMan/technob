@@ -26,6 +26,3 @@ dist/
 
 # python virtual environment folder
 .venv
-
-# visual studio code dev container extension folder
-.devcontainer
