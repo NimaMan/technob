@@ -275,7 +275,138 @@ trym = {
             ''',
         },
 }
-             
+
+
+dax_j = {"Boiler Room 2022": {
+    "youtube_link": "https://www.youtube.com/watch?v=2evgi1bbteA",
+
+    "info": '''
+    0:14 | Sera J - Freedom
+    2:15 | Vince - Roll
+    4:13 | Kashpitzky - Pursuit
+    10:37 | VILLA - 6am Lovestory
+    16:15 | Aaron Liberator & The Geezer - Reach For The Lazers
+    21:52 | Ant & KN - Fast Lane
+    23:06 | Pavel K. Novalis - Novitchok
+    26:43 | Badah - Brutal Man
+    30:35 | Dax J - The Train
+    33:35 | Leftfield - Afroride
+    39:50 | Decadence - Pass The Hoover
+    42:42 | Guy McAffer - Smoke Out The Mole
+    45:42 | Christopher Just - Petra 02 (Dax J Remix)
+    52:11 | Siul - Acid Schizophrenia
+    53:53 | Dax J - Brixton
+    55:52 | ID.. Closed Awakenings with this one.
+    59:00 | Infravision - Anthem
+    '''    
+    },
+
+    "Arte Concert 2022": {
+        "youtube_link": "https://www.youtube.com/watch?v=nbiaM9cGcJc",
+        "info": '''
+        0:00 | Hioll - Jerusalem Calling
+        3:30 | Lucass P - Concours D’élégance
+        4:30 | Ertax - Start From Hell
+        7:30 | Benkhlifa - Perfekt Mistake
+        10:15 | Nnamael - Ataraxia
+        13:30 | Triple Drop - Keep Your World
+        15:10 | DJ Cheses - Amargo
+        17:05 | Dax J - China White (will be released on Monnom Black at August 19)
+        21:10 | Umwelt - The Lost Dreamer
+        24:20 | Lvgo - Vampire Complex
+        27:00 | Acidless - Kiss Me
+        30:00 | Juan Nuciforo - Hasta Las Manos
+        32:00 | Aero - I Can’t Shoot
+        35:30 | Dax J - Reshape The Future (will be released on Monnom Black at August 19)
+        42:40 | Dax J - World Deception Alliance (will be released on Monnom Black at August 19)
+        46:43 | Skryption - Get Ready
+        49:10 | Sugar - Kværkhegn
+        54:20 | Spokesman - Acid Creak (Pierre Reconstruction Mix)
+        58:40 | Alt8 - Loop Da Loop (Chris Liberator & The Geezer Remix)
+        1:01:15 | Vendex - Demon’s Souls
+        1:08:40 | Dax J - Molotonic Beats
+        1:11:14 | Big In Germany - G Is For Germany (Geezer’s “G Is For Geezer” Remix)
+        1:14:50 | Valentino Kanzyani - House Soul
+        1:17:48 | Dax J - The Train
+        1:20:30 | NTBR & ÅMRTÜM - Im Paradis
+        1:22:11 | Christopher Just - Petra 02 (Dax J Remix) (will be released on Monnom Black on the 30th of September)
+        1:25:35 | Gat Decor - Passion (Naked Edit/Dax Edit)
+        1:28:55 | Ryuji Takeuchi - West, Not East
+        1:32:01 | Mauro Picotto - Baguette
+        1:33:00 | Patrick DSP - Esh
+        1:34:56 | Maxxi Rossi - Pulse Shaper
+        1:37:05 | Dax J - Brixton (will be released on Monnom Black at August 19)
+        1:41:15 | Hysteric Ego - Want Love (Remix)
+        1:44:57 | Phrenetic System - Wayfarer
+        1:48:40 | Sergy Casttle - Arpeggiator
+        1:50:49 | Rocco & Heist - Paradise Rush (Tarrentella vs. Redank Mix)
+        1:57:10 | Umwelt - Generation One
+        2:01:45 | These Hidden Hands - SZ31X71 (Roly Porter Remix)
+        '''
+        },
+
+    "Awakenings 2022": {
+        "youtube_link": "https://www.youtube.com/watch?v=2evgi1bbteA",
+        "info": '''
+        1:34 | Cyborg X - Latino Expo
+        3:00 | Masters of Disaster - No Headroom
+        6:30 | Dax J - China White
+        9:05 | Umwelt - Captive Universe
+        14:12 | Andreas Kramer & Thomas Pogadl - Unsound
+        16:19 | Thomas Krome - Bitches From Hell (Resurrection Edit)
+        31:00 | Schall + Rauch - You See That Voice
+        34:00 | Al-Faris & The Pagemaster - Fundamental
+        37:00 | Sergy Castle - Come On Neng
+        39:10 | Dax J - The Final Wavescape
+        41:20 | BFVR - Birds Mansion (Umwelt Remix)
+        46:50 | Aerial Mind - Riino
+        55:13 | Speedy J - Krekc
+        56:30 | Dax J - (Unreleased Remix)
+        59:05 | Fractions - (Unreleased)
+        1:03:06 | Quartz - Calling
+        1:05:00 | Ryuji Takeuchi - Nachtaktiv
+        1:09:00 | Andreas Krämer & Thomas Pogadl - Lecker Mädche
+        1:15:55 | Guy McAffer - Smoke Out The Mole
+        1:27:00 | Frank Biazzi - Turbulence
+        1:31:50 | Christopher Just - Track A (Dax J Remix, unreleased)
+        1:34:55 | Primal - Truth Without Pain
+        1:40:40 | DJ Varsovie - Codeword Macumbar (Verset Zero Remix)
+        '''
+},
+}
+
+
+alignment = {
+    "Verknipt 2023": {
+        "youtube_link": "https://www.youtube.com/watch?v=grxklWG1Vfc",
+        "info": '''
+        0:05 Neika & Creeds - Run Away
+        2:20 Eczodia - Devil's Motel
+        4:54 Alignment - Close Your Eyes
+        08:05 Storm - Different Power
+        10:50 Alignment - The Sound
+        15:55 Alignment - ID (Unreleased)
+        19:33 Juul Exler - Illusion
+        22:51 RBX - Fokkin Rave (unreleased)
+        28:47 Kølab - Get Away
+        29:37 Juul Exler - Detoxify
+        31:57 Alignment - Malfunction (Unreleased)
+        35:42 NYCO - Fucking Em Up
+        39:22 Alignment - Attack
+        43:10 Mr. Machine - In the Wood
+        47:00 Renegade System - When I Rock
+        49:55 Skryption - Hard Dreams
+        53:00 CARV - Brembo
+        56:25 STORM - Man Feel Alive
+        59:33 Tiesto - Adagio For Strings (BYØRN Hard techno remix)
+        1:02:25 CARV & DeGuzman - TempoPusher
+        1:05:20 RAËL - Schmieren
+        1:08:15 Protokseed - machine gun
+        '''
+    },
+}
+
+
 ceza_urls = ["https://www.youtube.com/watch?v=rP2X839Bm9U", 
 ]
 
