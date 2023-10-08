@@ -29,12 +29,12 @@ def fetch_soundcloud_data(song_url_or_name, driver):
 
         # Wait for the content to load
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "soundList__item")))
-
+        song_item = driver.find_elements(By.CLASS_NAME, "soundList__item")
         # Initialize list to store song details
         songs = []
 
         # Fetch and store details of each song
-        for song_item in driver.find_elements(By.CLASS_NAME, "soundList__item"):
+        for song_item in song_item:
             song_details = {}
             # Extract individual fields and handle exceptions
             for field, (css_selector, default) in {

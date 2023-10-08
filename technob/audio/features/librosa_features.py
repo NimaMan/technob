@@ -22,6 +22,7 @@ class LibrosaFeaturesExtractor:
         """
         A4 = 440
         C0 = A4 * pow(2, -4.75)
+        # key names using Helmholtz pitch notation
         name = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
         h = round(12 * log2(freq / C0))
         octave = h // 12

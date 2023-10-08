@@ -16,13 +16,19 @@ class Downloader:
             if not isinstance(youtube_link, YouTube):
                 youtube_video = YouTube(youtube_link)
             else:
-                youtube_video = youtube_link  
-            video = youtube_video.streams.filter(only_audio=True).first()
-            video.download(self.output_path)
-            return os.path.join(self.output_path, video.default_filename)
+                youtube_video = youtube_link
+            # Select the first audio-only stream ordered by descending audio bitrate
+            video = youtube_video.streams.filter(only_audio=True).order_by('abr').desc().first()
+            if video is not None:
+                video.download(self.output_path)
+                return os.path.join(self.output_path, video.default_filename)
+            else:
+                print("No suitable stream found.")
+                return None
         except Exception as e:
             print("pytube error:", e)
             return None
+
 
     def download_youtube_link_youtubedl(self, youtube_link, output_format="wav"):
         try:
@@ -31,21 +37,30 @@ class Downloader:
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': output_format,
-                    'preferredquality': '192',
+                    'preferredquality': '360',
                 }],
-                'outtmpl': os.path.join(self.output_path, '%(title)s.%(ext)s')
+                'outtmpl': os.path.join(self.output_path, '%(title)s.%(ext)s'),
+                'quiet': False,
+                'no_warnings': True,
+                'ignoreerrors': True,
             }
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 info_dict = ydl.extract_info(youtube_link, download=True)
-                return os.path.join(self.output_path, f"{info_dict['title']}.{output_format}")
+                if info_dict is not None:
+                    return os.path.join(self.output_path, f"{info_dict['title']}.{output_format}")
+                else:
+                    print(f"Failed to download {youtube_link}.")
+                    return None
         except Exception as e:
             print("youtube_dl error:", e)
             return None
 
-    def download_youtube_link(self, youtube_link, output_format="wav", keep_video=False, artist_name=None):
-        video_path = self.download_youtube_link_pytube(youtube_link)
-        if video_path is None:
+
+    def download_youtube_link(self, youtube_link, output_format="wav", keep_video=False, artist_name=None, downloader="pytube"):
+        if downloader == "youtube_dl":
             video_path = self.download_youtube_link_youtubedl(youtube_link, output_format=output_format)
+        elif downloader == "pytube":
+            video_path = self.download_youtube_link_pytube(youtube_link)
         if video_path is None:
             print("Error downloading the video.")
             return None
