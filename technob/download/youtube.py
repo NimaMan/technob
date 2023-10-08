@@ -1,5 +1,6 @@
 import os
 import ffmpeg
+import subprocess
 from pytube import YouTube, Search
 import youtube_dl
 
@@ -8,17 +9,16 @@ class Downloader:
         # Ensure output directory exists
         if not os.path.exists(output_path):
             os.makedirs(output_path)
-        self.output_path = output_path
-    
+        self.output_path = output_path    
 
-    def download_youtube_link_pytube(self, youtube_link):
+    def download_youtube_link_pytube(self, youtube_link, only_audio=True):
         try:
             if not isinstance(youtube_link, YouTube):
                 youtube_video = YouTube(youtube_link)
             else:
                 youtube_video = youtube_link
-            # Select the first audio-only stream ordered by descending audio bitrate
-            video = youtube_video.streams.filter(only_audio=True).order_by('abr').desc().first()
+            # Select the highest audio bitrate stream
+            video = youtube_video.streams.filter(only_audio=only_audio).order_by('abr').desc().first()
             if video is not None:
                 video.download(self.output_path)
                 return os.path.join(self.output_path, video.default_filename)
@@ -28,8 +28,7 @@ class Downloader:
         except Exception as e:
             print("pytube error:", e)
             return None
-
-
+    
     def download_youtube_link_youtubedl(self, youtube_link, output_format="wav"):
         try:
             ydl_opts = {
@@ -37,7 +36,7 @@ class Downloader:
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': output_format,
-                    'preferredquality': '360',
+                    #'preferredquality': '192',  # Higher quality
                 }],
                 'outtmpl': os.path.join(self.output_path, '%(title)s.%(ext)s'),
                 'quiet': False,
@@ -56,7 +55,7 @@ class Downloader:
             return None
 
 
-    def download_youtube_link(self, youtube_link, output_format="wav", keep_video=False, artist_name=None, downloader="pytube"):
+    def download_youtube_link(self, youtube_link, output_format="wav", keep_video=False, artist_name=None, song_name=None, downloader="pytube"):
         if downloader == "youtube_dl":
             video_path = self.download_youtube_link_youtubedl(youtube_link, output_format=output_format)
         elif downloader == "pytube":
@@ -64,18 +63,28 @@ class Downloader:
         if video_path is None:
             print("Error downloading the video.")
             return None
-        return self.extract_audio_from_video(video_path, output_format=output_format, keep_video=keep_video, artist_name=artist_name)
+        return self.extract_audio_from_video(video_path, output_format=output_format, keep_video=keep_video, artist_name=artist_name, song_name=song_name)
 
-    def extract_audio_from_video(self, video_path, output_format="wav", keep_video=False, artist_name=None):
+    def extract_audio_from_video(self, video_path, output_format="wav", keep_video=False, artist_name=None, song_name=None):
         base_name = os.path.splitext(os.path.basename(video_path))[0]
-        audio_file_name = f"{base_name}.{output_format}"
+        audio_file_name = f"{artist_name if artist_name else 'U'} - {song_name if song_name else base_name}.{output_format}"
         output_file_path = os.path.join(self.output_path, audio_file_name)
 
-        metadata_options = {}
+        metadata_options = []
         if artist_name:
-            metadata_options['metadata'] = f'artist={artist_name}'
+            metadata_options.extend(['-metadata', f'artist={artist_name}'])
+        if song_name:
+            metadata_options.extend(['-metadata', f'title={song_name}'])
+
+        ffmpeg_cmd = [
+            'ffmpeg',
+            '-i', video_path,
+            '-q:a', '0',  # Best Quality
+        ] + metadata_options + [
+            output_file_path
+        ]
         
-        ffmpeg.input(video_path).output(output_file_path, **metadata_options).run()
+        subprocess.run(ffmpeg_cmd)  # Use subprocess.run instead of ffmpeg.run
 
         if not keep_video:
             os.remove(video_path)
