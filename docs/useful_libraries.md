@@ -12,5 +12,14 @@
     MSAF is a python package for the analysis of music structural segmentation algorithms. It includes a set of features, algorithms, evaluation metrics, and datasets to experiment with.
 
 
+- (Mixxx)[https://github.com/mixxxdj/mixxx/tree/main]:Free DJ software that gives you everything you need to perform live DJ mixes. Mixxx works on GNU/Linux, Windows, and macOS.
+
+    This is a great library that has some basic functionalities, and a primitive user-interface. 
+
+
+
+# Learning 
+
 
 - (Fundamentals of Music Processing)[https://www.audiolabs-erlangen.de/resources/MIR/FMP/C0/C0.html]
+

@@ -109,9 +109,11 @@ def search_download_from_soundcloud(query, output_path='.', format='bestaudio/be
 
 if __name__ == '__main__':
     
+    output_path = '/Users/nimamanaf/Desktop/Music/misc'
     #url = 'https://soundcloud.com/platform/hard-dance-040-trym'
     #download_soundcloud_link(url, output_path='/Users/nimamanaf/Desktop/Music/Trym')
-    song_name = 'Funk Tribu - Blue Summer (Original Mix)'
-    search_download_from_soundcloud(song_name, output_path='/Users/nimamanaf/Desktop/Music/Trym')
+    #song_name = 'Goldener Raver (1995 Remix) [Single Edit]'
+    #search_download_from_soundcloud(song_name, output_path=output_path)
     
-    
+    url = "https://soundcloud.com/joachim-witt-official/goldener-raver-1995-remix"
+    download_soundcloud_link(url, output_path=output_path, format='mp3', quality='192')

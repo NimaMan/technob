@@ -61,4 +61,6 @@ def main(set_name, set_source="soundcloud", song_source="soundcloud", link=None,
 
 if __name__ == "__main__":
     # Example usage
-    main(set_name="Some Set Name", source="soundcloud")
+    main(set_name="STrym @ Verknipt Festival 2021", set_source="youtube", 
+         song_source="youtube", link="https://www.youtube.com/watch?v=GIfLSZyW6_s",
+            output_path="/Users/nimamanaf/Desktop/Music/Trym")
