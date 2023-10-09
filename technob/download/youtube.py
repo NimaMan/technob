@@ -66,6 +66,8 @@ class Downloader:
         return self.extract_audio_from_video(video_path, output_format=output_format, keep_video=keep_video, artist_name=artist_name, song_name=song_name)
 
     def extract_audio_from_video(self, video_path, output_format="wav", keep_video=False, artist_name=None, song_name=None):
+        song_name = song_name.replace("/", " ")
+        artist_name = artist_name.replace("/", " ")
         base_name = os.path.splitext(os.path.basename(video_path))[0]
         audio_file_name = f"{artist_name if artist_name else 'U'} - {song_name if song_name else base_name}.{output_format}"
         output_file_path = os.path.join(self.output_path, audio_file_name)
@@ -93,12 +95,13 @@ class Downloader:
     def download_urls(self, urls, output_format="wav"):
         return [self.download_youtube_link(url, output_format=output_format) for url in urls]
 
-    def find_and_download(self, query, download_top_k=1, output_format="wav", artist_name=None):
+    def find_and_download(self, query, download_top_k=1, output_format="wav", artist_name=None, song_name=None):
         search = Search(query)
         results = search.results[:download_top_k]
         downloaded_files = []
         for result in results:
-            downloaded_file = self.download_youtube_link(result.watch_url, output_format=output_format, artist_name=artist_name)
+            downloaded_file = self.download_youtube_link(result.watch_url, output_format=output_format,
+                                                          artist_name=artist_name, song_name=song_name)
             downloaded_files.append(downloaded_file)
         return downloaded_files
 

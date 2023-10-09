@@ -40,6 +40,21 @@ def process_song_info(text_data):
 
     # Initialize an empty list to hold song data
     song_data = []
+    print(len(song_chunks))
+    # Process each chunk separately
+    for idx, lines in enumerate(song_chunks):
+        # Ensure there are at least 7 lines of data (some chunks might be empty)
+        if len(lines) >= 7:
+            song_info = lines[1:8]  # Exclude the track number
+            # Split BPM and key
+            bpm_key = song_info[4].split(' - ')
+            if len(bpm_key) == 2:
+                song_info[4] = bpm_key[0]  # BPM
+                song_info.insert(5, bpm_key[1])  # Key
+            else:  # added this else block to handle cases where BPM and Key aren't split
+                song_info.insert(5, "Unknown Key")  # adding a placeholder for Key if it's not available
+            song_data.append(song_info)
+    ''' This is the working one
     # Process each chunk separately
     for idx, lines in enumerate(song_chunks):
         # Ensure there are at least 7 lines of data (some chunks might be empty)
@@ -51,9 +66,10 @@ def process_song_info(text_data):
                 song_info[4] = bpm_key[0]  # BPM
                 song_info.insert(5, bpm_key[1])  # Key
             song_data.append(song_info)
-    
+    '''
+    #print(song_data)
     # Create a pandas DataFrame
-    columns = ['Title', 'Artist', 'Label', 'Genre', 'BPM', 'Key', 'Release Date', 'Price']
+    columns = ['Song', 'Artist', 'Label', 'Genre', 'BPM', 'Key', 'Release Date', 'Price']
     df = pd.DataFrame(song_data, columns=columns)
     
     return df
