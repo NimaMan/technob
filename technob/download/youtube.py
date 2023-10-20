@@ -3,6 +3,54 @@ import ffmpeg
 import subprocess
 from pytube import YouTube, Search
 import youtube_dl
+import os
+import subprocess
+from datetime import datetime
+
+
+class AudioExtractor:
+    def __init__(self, output_path):
+        self.output_path = output_path
+
+    def extract_audio_from_video(self, video_path, output_format="wav", keep_video=False, artist_name=None, song_name=None):
+        if song_name:
+            song_name = song_name.replace("/", " ")
+        if artist_name:
+            artist_name = artist_name.replace("/", " ")
+        base_name = os.path.splitext(os.path.basename(video_path))[0]
+        if artist_name:
+            audio_file_name = f"{artist_name} - {song_name if song_name else base_name}.{output_format}"
+        else:
+            audio_file_name = f"{song_name if song_name else base_name}.{output_format}"
+        output_file_path = os.path.join(self.output_path, audio_file_name)
+
+        # Check for existing file and modify the file name to avoid overwriting
+        counter = 1
+        while os.path.exists(output_file_path):
+            audio_file_name = f"{audio_file_name.rsplit('.', 1)[0]}_{counter}.{output_format}"
+            output_file_path = os.path.join(self.output_path, audio_file_name)
+            counter += 1
+
+        metadata_options = []
+        if artist_name:
+            metadata_options.extend(['-metadata', f'artist={artist_name}'])
+        if song_name:
+            metadata_options.extend(['-metadata', f'title={song_name}'])
+
+        ffmpeg_cmd = [
+            'ffmpeg',
+            '-i', video_path,
+            '-q:a', '0',  # Best Quality
+        ] + metadata_options + [
+            output_file_path
+        ]
+
+        subprocess.run(ffmpeg_cmd)  # Use subprocess.run instead of ffmpeg.run
+
+        if not keep_video:
+            os.remove(video_path)
+        return output_file_path
+    
 
 class Downloader:
     def __init__(self, output_path):
@@ -66,10 +114,15 @@ class Downloader:
         return self.extract_audio_from_video(video_path, output_format=output_format, keep_video=keep_video, artist_name=artist_name, song_name=song_name)
 
     def extract_audio_from_video(self, video_path, output_format="wav", keep_video=False, artist_name=None, song_name=None):
-        song_name = song_name.replace("/", " ")
-        artist_name = artist_name.replace("/", " ")
+        if song_name:
+            song_name = song_name.replace("/", " ")
+        if artist_name:
+            artist_name = artist_name.replace("/", " ")
         base_name = os.path.splitext(os.path.basename(video_path))[0]
-        audio_file_name = f"{artist_name if artist_name else 'U'} - {song_name if song_name else base_name}.{output_format}"
+        if artist_name:
+            audio_file_name = f"{artist_name} - {song_name if song_name else base_name}.{output_format}"
+        else:
+            audio_file_name = f"{song_name if song_name else base_name}.{output_format}"
         output_file_path = os.path.join(self.output_path, audio_file_name)
 
         metadata_options = []
@@ -80,6 +133,7 @@ class Downloader:
 
         ffmpeg_cmd = [
             'ffmpeg',
+            '-n',  # Never overwrite existing files
             '-i', video_path,
             '-q:a', '0',  # Best Quality
         ] + metadata_options + [

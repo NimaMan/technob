@@ -95,7 +95,7 @@ kobosil = {
 
 reinier = {
     "Time Warp 2023": {
-        "youtube_link": None,
+        "youtube_link": "https://www.youtube.com/watch?v=oVfw8P0NOTA",
         "info": '''
         00:00 Lucid - Zerstörer
         00:36 Reinier Zonneveld - Move your body to the beat
@@ -121,7 +121,7 @@ reinier = {
         01:54:47 RZ - Hard Gaan
         01:54:47 Dustin Zahn - Stranger to stability(Len Faki RMX) [sped up and altered version]
         '''
-    }
+    },
 }
 
 
@@ -140,37 +140,57 @@ indira_paganotto_Tomorrowland = {"Tomorrowland Summer 2023":{ "youtube_link":"ht
 
                         }
 
-amelie_lens = {"Tomorrowland Summer 2023":{"youtube_link": "https://www.youtube.com/watch?v=_Dy_Cn0HEZU", 
-                                 "info":'''
-                                    3:14 Steve Shaden Florida
-                                    8:20 Amelie Lens - Radiance
-                                    10:35 Luix Spectrum & Loco13 - Blessing (Pitch! Remix)
-                                    13:30 Decky Scott - Evil Intent
-                                    17:15 Danielle Ciuro Bring It Back
-                                    18:45 Robert Curtis - The Butterfly Effect 
-                                    21:30 Portex - Addiction
-                                    22:40 Sopik - Free Your Mind
-                                    25:00 OnTune & Indecent Noise - Transmission Control
-                                    27:15 Frankyeffe - Touch Me
-                                    31:00 Basswell - Massive Attack
-                                    34:20 Cherry Moon Trax - The House Of House (Thomas Schumacher Remix)
-                                    37:30 CARV - Masked Rules
-                                    41:05 Members Of Mayday - The Mayday Anthem (Thomas Schumacher Remix)
-                                    45:20 Amelie Lens - Feel It
-                                    48:20 Le Shuuk & B-Stylezz - Konje
-                                    50:50 Aamourocean - This Is The Way (unreleased)
-                                    53:35 Zombie Nation - Kernkraft 400 (ID Remix)
-                                    55:40 Bastet - Fuck Style
-                                    56:50 Amelie Lens - You And Me
-                                    '''
-                                },
+amelie_lens = {"Tomorrowland Summer 2023":{
+                "youtube_link": "https://www.youtube.com/watch?v=_Dy_Cn0HEZU", 
+                "info":'''
+                        3:14 Steve Shaden Florida
+                        8:20 Amelie Lens - Radiance
+                        10:35 Luix Spectrum & Loco13 - Blessing (Pitch! Remix)
+                        13:30 Decky Scott - Evil Intent
+                        17:15 Danielle Ciuro Bring It Back
+                        18:45 Robert Curtis - The Butterfly Effect 
+                        21:30 Portex - Addiction
+                        22:40 Sopik - Free Your Mind
+                        25:00 OnTune & Indecent Noise - Transmission Control
+                        27:15 Frankyeffe - Touch Me
+                        31:00 Basswell - Massive Attack
+                        34:20 Cherry Moon Trax - The House Of House (Thomas Schumacher Remix)
+                        37:30 CARV - Masked Rules
+                        41:05 Members Of Mayday - The Mayday Anthem (Thomas Schumacher Remix)
+                        45:20 Amelie Lens - Feel It
+                        48:20 Le Shuuk & B-Stylezz - Konje
+                        50:50 Aamourocean - This Is The Way (unreleased)
+                        53:35 Zombie Nation - Kernkraft 400 (ID Remix)
+                        55:40 Bastet - Fuck Style
+                        56:50 Amelie Lens - You And Me
+                        '''
+                    },
 
                "Tomorrowland Winter 2023":{"youtube_link":"https://www.youtube.com/watch?v=vuBhxwCCbyw", 
                                  "info":
                                     '''
                                     '''
                                  },
-                                 
+                "Exhale 78":{
+                    'youtube_link': "", 
+                    'info':'''
+                        00.00 Irshad Hussein - Scorpion (Original Mix)
+                        03.53 AIROD & Amelie Lens - Adrenaline
+                        06.10 Adam Beyer - Desert Queen
+                        09.48 Atheris - Kindergarten
+                        12.44 Gabry Fasano - Chicago
+                        15.45 Steve Shaden - Closure
+                        18.59 Widerz - Space Machine
+                        21.51 Charlie Sparks & Frazi.er - No Time For Hate
+                        24.43 Analect - Precognition
+                        28.13 Flour - Invasion
+                        32.34 AIROD - Drumshock
+                        33.30 Commander Sam - Are Am Psy
+                        38.06 Sylvie Maziarz - Durch Die Nacht (MSKD Remix)
+                        43.36 SWART - Trancender
+                        49.03 La Kajofol - Ivresse
+                        ''',
+                    },      
                }
 
 
@@ -220,31 +240,6 @@ charlotte_de_witte = {
  }
 
 
-
-deWitte_urls = ["https://www.youtube.com/watch?v=1-ZU3bCEGqQ"
-        "https://www.youtube.com/watch?v=GTYxbtDZBkU", 
-        "https://www.youtube.com/watch?v=uxNjgtFTkLE",
-        "https://www.youtube.com/watch?v=1-ZU3bCEGqQ",        
-        ]
-
-reiner_urls = ["https://www.youtube.com/watch?v=ovUWIjDBRTc", 
-               "https://www.youtube.com/watch?v=uoPY8E16l-M",
-               "https://www.youtube.com/watch?v=2evgi1bbteA",
-               "https://www.youtube.com/watch?v=aSJi-SLaxLY",
-               "https://www.youtube.com/watch?v=l2nn7nROf9I",
-               "https://www.youtube.com/watch?v=bdFbYI0DS6Q",
-               "https://www.youtube.com/watch?v=fwDwDp6001Y",
-               "https://www.youtube.com/watch?v=ueDAul3ohhY",
-               "https://www.youtube.com/watch?v=oSBUD45A-Gw",
-               "https://www.youtube.com/watch?v=xU3Ipr1ntzw",
-               "https://www.youtube.com/watch?v=xSJEwuhkQIk",
-               "https://www.youtube.com/watch?v=DerCBfz5GQ0",
-               "https://www.youtube.com/watch?v=1NuMjbkyCcA",
-               "https://www.youtube.com/watch?v=NGnNZtBV1N8",
-               "https://www.youtube.com/watch?v=80DR8XH-k-k",
-               "https://www.youtube.com/watch?v=bWKUhgpVG1o",
-               ]
-
 trym = {
     "Extrema 2022": {
         "youtube_link": "https://www.youtube.com/watch?v=ubVmJQG34BY",
@@ -273,6 +268,48 @@ trym = {
             1:00:00 U96 - Club Bizarre 2k17 (UltraBooster Bootleg Remix)
             1:02:15 Around the World (MZPERX edit)
             ''',
+        },
+}
+
+
+nine_nine = {
+    "Awakenings 2022": {
+    },
+
+    "Apokalypse": {
+        "youtube_link": "https://www.youtube.com/watch?v=GjdBEyLeclU",
+        "info": '''
+            0:35 TNT x DJ Isaac - Rave Now
+            2:45 WZX_O & TECHSIA - Born To Rave
+            5:47 Alex Farell - 3AM In Berlin
+            12:23 Jacidorex & POPOF - Midnight Express
+            16:01 SIKOTI - Make the Crowd Go
+            18:50 Marco Leckbert - Sensitive Power
+            21:31 HXIST - I'm So Afraid
+            24:37 DJ Reiz - Dance Machine 96 (ID Edit)
+            27:35 MSL-T - It's A Lifestyle
+            30:17 PRYDIE - Transparency
+            37:48 Luciid - Paro Hour
+            42:26 Shadym - P.O.P.
+            48:00 Fabrizio De Santis - Prometazina
+            52:53 Fenrick - U Belong To Me
+            56:09 Brennan Heart - I Love Haters
+            58:38 MSL-T & ELECTRE - Hard Influences
+            1:05:12 Djay D, Wain Johnstone - Edge Of Acid (ID Edit)
+            1:08:07 JonJo Drake - Why People Take LSD
+            1:11:15 Aaran Burn - Titan
+            1:15:14 Luca Agnelli - Wait A Minute
+            1:17:31 Rian Wood - Hard Generation
+            1:20:58 RBX - Reverse Bass
+            1:24:52 Jacidorex - Two Minded
+            1:28:16 RBX - Smashes Heads
+            1:32:07 Jacidorex - Titania
+            1:34:04 TNT x Rudeejay - The Music Is Moving
+            1:36:53 TNT & Ruffneck - Mindcontroller 2k20
+            1:38:25 Wild Motherfuckers - Fuck It Up
+            1:40:20 Wild Motherfuckers - Fuck It Up (ID Edit)
+            1:42:55 TNT - Reverse The Bass
+        ''',
         },
 }
 
@@ -348,29 +385,40 @@ dax_j = {"Boiler Room 2022": {
     "Awakenings 2022": {
         "youtube_link": "https://www.youtube.com/watch?v=2evgi1bbteA",
         "info": '''
-        1:34 | Cyborg X - Latino Expo
-        3:00 | Masters of Disaster - No Headroom
-        6:30 | Dax J - China White
-        9:05 | Umwelt - Captive Universe
-        14:12 | Andreas Kramer & Thomas Pogadl - Unsound
-        16:19 | Thomas Krome - Bitches From Hell (Resurrection Edit)
-        31:00 | Schall + Rauch - You See That Voice
-        34:00 | Al-Faris & The Pagemaster - Fundamental
-        37:00 | Sergy Castle - Come On Neng
-        39:10 | Dax J - The Final Wavescape
-        41:20 | BFVR - Birds Mansion (Umwelt Remix)
-        46:50 | Aerial Mind - Riino
-        55:13 | Speedy J - Krekc
-        56:30 | Dax J - (Unreleased Remix)
-        59:05 | Fractions - (Unreleased)
-        1:03:06 | Quartz - Calling
-        1:05:00 | Ryuji Takeuchi - Nachtaktiv
-        1:09:00 | Andreas Krämer & Thomas Pogadl - Lecker Mädche
-        1:15:55 | Guy McAffer - Smoke Out The Mole
-        1:27:00 | Frank Biazzi - Turbulence
-        1:31:50 | Christopher Just - Track A (Dax J Remix, unreleased)
-        1:34:55 | Primal - Truth Without Pain
-        1:40:40 | DJ Varsovie - Codeword Macumbar (Verset Zero Remix)
+            1:34 | Cyborg X - Latino Expo
+            3:00 | Masters of Disaster - No Headroom
+            6:30 | Dax J - China White
+            9:05 | Umwelt - Captive Universe
+            11:20 | Nnamael - ATARAXIA
+            14:12 | Andreas Kramer & Thomas Pogadl - Unsound
+            16:19 | Thomas Krome - Bitches From Hell (Resurrection Edit)
+            20:00 | Riino - What's matter
+            22:00 | Umwelt - Generation One 
+            26:10 | Ryuji Takeuchi - Dignity
+            31:00 | Schall + Rauch - You See That Voice
+            34:00 | Al-Faris & The Pagemaster - Fundamental
+            37:00 | Sergy Castle - Come On Neng
+            39:10 | Dax J - The Final Wavescape
+            41:20 | BFVR - Birds Mansion (Umwelt Remix)
+            44:20 | Track id unknown (maybe Ben Khlifa)
+            46:50 | Aerial Mind - Riino
+            50:10 | David Moleon - Cockroach rework - rework
+            55:13 | Speedy J - Krekc
+            56:30 | Dax J - Susumu remix (Unreleased)
+            59:05 | Fractions - Hater Squad
+            1:03:06 | Quartz - Calling
+            1:05:00 | Ryuji Takeuchi - Nachtaktiv
+            1:09:00 | Andreas Krämer & Thomas Pogadl - Lecker Mädche
+            1:12:35 | Buzzi - Splash
+            1:15:55 | Guy McAffer - Smoke Out The Mole
+            1:18:25 | Umwelt - The Lost Dreamer
+            1:21:55 | Dax J - Brixton
+            1:27:00 | Frank Biazzi - Turbulence
+            1:31:50 | Christopher Just - Petra 02 (Dax J Remix)
+            1:34:55 | Primal - Truth Without Pain
+            1:38:55 | Dax J - The Train
+            1:40:40 | DJ Varsovie - Codeword Macumbar (Verset Zero Remix)
+            1:43:00 | MK Ultra - Redline Hero
         '''
 },
 }
@@ -407,13 +455,7 @@ alignment = {
 }
 
 
-ceza_urls = ["https://www.youtube.com/watch?v=rP2X839Bm9U", 
-]
+ceza = {'Ders al': "https://www.youtube.com/watch?v=rP2X839Bm9U", 
+}
 
-
-misc_urls = {"put the name": "https://www.youtube.com/watch?v=ND3KvTOkXbw", 
-             "its_better_when_we_fake_it": "https://www.youtube.com/watch?v=ETm-GvXbh30",
-             "oguz_golden_szn": 'https://www.youtube.com/watch?v=AfjoYWA1lOs', 
-             "klungkluster_die_welt": "https://www.youtube.com/watch?v=8dercZbT3Tw",
-             }
 

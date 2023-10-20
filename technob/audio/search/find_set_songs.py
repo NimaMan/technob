@@ -7,7 +7,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-def find_songs_from_set_with_shazam(audio_file_path, initial_interval_duration=60*1000, overlap_duration=30*1000, confidence_threshold=0.9, consecutive_matches=2, silence_threshold=-50):
+def find_songs_from_set_with_shazam(audio_file_path, initial_interval_duration=150*1000, overlap_duration=30*1000, confidence_threshold=0.7, consecutive_matches=2, silence_threshold=-50):
     '''
     Key Features:
     Audio Preparation: The function loads an audio file into an AudioSegment object.
@@ -53,7 +53,7 @@ def find_songs_from_set_with_shazam(audio_file_path, initial_interval_duration=6
                 # Append song details to the dataframe using pd.concat
                 new_row = pd.DataFrame({
                     "Start Time": [start_time / (1000 * 60)],  # Convert to minutes
-                    "Song Name": [details["name"]],
+                    "Song": [details["name"]],
                     "Artist": [details["artist"]],
                     "Genre": [details["genres"]["primary"]]
                 })

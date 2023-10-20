@@ -11,7 +11,7 @@ def get_set_youtube(set_name, link=None, output_path="."):
     if link:
         audio_file_path = downloader.download_youtube_link(link)
     else:
-        audio_files = downloader.find_and_download_youtube_link(set_name)
+        audio_files = downloader.find_and_download(set_name)
         if audio_files:
             audio_file_path = audio_files[0]
         else:
@@ -49,9 +49,9 @@ def main(set_name, set_source="soundcloud", song_source="soundcloud", link=None,
 
     set_download_path = os.path.join(output_path, set_name)
     downloader = YouTubeDownloader(output_path=set_download_path)
-    for search_name in songs_in_audio["Song Name"] + " " + songs_in_audio["Artist"]:
+    for search_name in songs_in_audio["Song"] + " " + songs_in_audio["Artist"]:
         if song_source == "youtube":
-            downloader.find_and_download_youtube_link(search_name)
+            downloader.find_and_download(search_name)
         elif song_source == "soundcloud":
             search_download_from_soundcloud(search_name, output_path=set_download_path)
         else:
@@ -61,6 +61,6 @@ def main(set_name, set_source="soundcloud", song_source="soundcloud", link=None,
 
 if __name__ == "__main__":
     # Example usage
-    main(set_name="STrym @ Verknipt Festival 2021", set_source="youtube", 
-         song_source="youtube", link="https://www.youtube.com/watch?v=GIfLSZyW6_s",
-            output_path="/Users/nimamanaf/Desktop/Music/Trym")
+    main(set_name="Rave Rebels 2023", set_source="youtube", 
+         song_source="youtube", link="https://www.youtube.com/watch?v=cO07Xn0Qf-A",
+            output_path="/Users/nimamanaf/Desktop/Music/Reinier")
