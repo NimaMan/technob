@@ -161,27 +161,27 @@ class Downloader:
 
 
 if __name__ == "__main__":
-    from technob.download.set_lists import Tracklist, kobosil, reinier, tale_of_us, charlotte_de_witte, amelie_lens, trym, dax_j
-    
-    output_path = "/Users/nimamanaf/Desktop/Music/all" 
-    url = "https://www.youtube.com/watch?v=zvVRlhFetRI"
+    from technob.download.set_lists import *
+    output_path = "/Users/nimamanaf/Desktop/Music" 
+    '''
+    url = "https://youtu.be/aKalrzmO5_A?si=TR3I2DtvVpz-1j7i"
+    url = 'https://www.youtube.com/watch?v=wJKCdRnp04w'
     downloader = Downloader(output_path=output_path) 
     downloader.download_youtube_link(url)
     
     '''
-    dj = dax_j
-    set_name = "Awakenings 2022"
-    set_url = dj[set_name]
+    dj = alignment
+    set_name = "Verknipt 2023"
     tracklist = Tracklist(dj[set_name])
-    output_path = os.path.join(output_path, set_name)
+    output_path = os.path.join(output_path, "Alignment")
     downloader = Downloader(output_path=output_path) 
-    downloader.download_youtube_link(set_url)
+    #downloader.download_youtube_link(set_url)
 
-    '''
-    '''
+    
+    #'''
     # download the songs from the tracklist of the set 
-    downloader.download_youtube_link(tracklist.youtube_link)
+    #downloader.download_youtube_link(tracklist.youtube_link)
     for song in tracklist.songs:
         search_name = song.search_name
         downloader.find_and_download(search_name)
-    '''
+    #'''

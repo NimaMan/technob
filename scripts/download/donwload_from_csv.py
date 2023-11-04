@@ -5,9 +5,11 @@ import numpy as np
 from technob.download.youtube import Downloader 
 
 
-csv_path = None
+genre = "tech-house"
+
+csv_path = f"technob/data/bp100-{genre}.csv"
 df = pd.read_csv(csv_path)
-output_path = "."
+output_path = f"/Users/nimamanaf/Desktop/Music/bp100-{genre}"
 
 # drop duplicates 
 df = df.drop_duplicates(subset=["Song", "Artist", "Genre"], keep="first") 

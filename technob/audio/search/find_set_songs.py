@@ -31,7 +31,7 @@ def find_songs_from_set_with_shazam(audio_file_path, initial_interval_duration=1
     audio = AudioSegment.from_wav(audio_file_path)
     total_duration = len(audio) # in milliseconds
     
-    df = pd.DataFrame(columns=["Start Time", "Song Name", "Artist", "Genre"])
+    df = pd.DataFrame(columns=["Start Time", "Song", "Artist", "Genre"])
 
     start_time = 0
     last_recognized_song = None

@@ -452,6 +452,33 @@ alignment = {
         1:08:15 Protokseed - machine gun
         '''
     },
+    "Verknipt Indoor 04-02-2023":{
+        "youtube_link":"https://www.youtube.com/watch?v=x43ToCZzEm8&t=3766s",
+        "info":
+        '''
+        0:00:00 STORM - Man Feel Alive
+        0:03:54 SMAC-U - Trainwreck
+        0:08:15 AnGy KoRe, Gabriel Padrevita, Simox - Smoke
+        0:12:29 Basswell, 74185# - Fusion
+        0:13:57 CARV, DeGuzman - TempoPusher
+        0:17:19 Alignment - Close Your Eyes
+        0:20:42 Alignment - Gravitation [Unreleased]
+        0:24:01 Alignment - System Failure [Unreleased]
+        0:28:23 PISAPIA (IT) - Hybrid Boom
+        0:31:36 AnGy KoRe, Gabriel Padrevita - Turn Me On
+        0:34:52 Luca Agnelli - Here We Go Again
+        0:36:20 Alignment - Attack
+        0:40:29 Alignment - Fight For A New World
+        0:42:59 Mr.Machine - In The Wood
+        0:47:44 O.B.I. - Get Em High
+        0:50:21 Alignment - The Sound
+        0:54:34 Viper Diva - Love & Riot
+        0:59:01 Alignment - You Can't Control Me
+        1:01:54 Scove, Veyla - Mayhem
+        1:05:11 LÄUFF - Lightning (Funk Tribu Remix)
+        1:09:45 1luu feat. Lauterkach - Beryllium
+        ''',
+    },
 }
 
 
@@ -459,3 +486,27 @@ ceza = {'Ders al': "https://www.youtube.com/watch?v=rP2X839Bm9U",
 }
 
 
+Adriatique = {
+    "Printworks":{
+        "youtube_link":"https://www.youtube.com/watch?v=GPuZwMmd4YI",
+        },
+
+    "Tomorrowland 2023":{
+        "youtube_link": "https://www.youtube.com/watch?v=XkVC62yzxlg", 
+        "info": '''
+                24:00 ANOTR & Abel Balder - Relax My Eyes (Restricted Edit)
+                31:30 Jos & Eli - ID
+                36:50 Adriatique - The Future Is Unknown
+                40:30 ID - ID
+                46:40 Eynka & Adriatique - Beyond Us (Hatshepsut Version)
+                52:00 Pryda - The Return
+                58:00 ID ft. Braev - Feel
+                1:03:00 The Irrepressibles - The Most Beautiful Boy (Felsmann + Tiley Reinterpretation) (Aaron Hibell Edit)
+                1:07:00 RÜFÜS DU SOL - On My Knees (Adriatique Remix)
+                1:14:00 Ae:ther & Benjamin Yellowitz - Dynamite 
+                1:20:30 ID - ID
+                1:25:00 Adriatique & WhoMadeWho - Miracle
+            ''',
+        },
+
+    }

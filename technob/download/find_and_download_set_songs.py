@@ -61,6 +61,7 @@ def main(set_name, set_source="soundcloud", song_source="soundcloud", link=None,
 
 if __name__ == "__main__":
     # Example usage
-    main(set_name="Rave Rebels 2023", set_source="youtube", 
-         song_source="youtube", link="https://www.youtube.com/watch?v=cO07Xn0Qf-A",
-            output_path="/Users/nimamanaf/Desktop/Music/Reinier")
+    from technob.download.set_lists import Adriatique
+    for set_name in Adriatique.keys():
+        main(set_name=set_name, set_source="youtube", song_source="youtube", 
+             link=Adriatique[set_name]["youtube_link"], output_path="/Users/nimamanaf/Desktop/Music/Adriatique")

@@ -127,10 +127,12 @@ def extract_related_tracks(element):
         genre_element = element.find_element(By.CSS_SELECTOR, '.cell.bpm a')
         genre = genre_element.text
         
-        bpm_key_element = element.find_element(By.CSS_SELECTOR, '.cell.bpm div')
-        bpm_key_text = bpm_key_element.text
-        bpm, key = bpm_key_text.split(' - ')
-        
+        try: 
+            bpm_key_text = element.find_element(By.CSS_SELECTOR, '.cell.bpm div').text
+            print(bpm_key_text)
+            bpm, key = bpm_key_text.split(' - ')
+        except:
+            print("BPM and Key not available", element.find_element(By.CSS_SELECTOR, '.cell.bpm div').text)
         release_date_element = element.find_element(By.CSS_SELECTOR, '.cell.date')
         release_date = release_date_element.text
         
@@ -183,6 +185,7 @@ def get_related_tracks(url, headless=True, driver_type='firefox',  max_retries=5
 
 if __name__ == '__main__':
     url = 'https://www.beatport.com/track/one-time/18171709'
+    url = "https://www.beatport.com/top-100"
     # Now song_info_list should contain the song info from the webpage
 
     df = get_related_tracks(url)
