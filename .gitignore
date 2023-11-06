@@ -24,3 +24,5 @@ dist/
 # DS_Store in all directories and subdirectories
 **/.DS_Store
 
+# python virtual environment folder
+.venv
